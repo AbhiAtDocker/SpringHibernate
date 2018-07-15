@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.abhi.spring.hibernate.bean">
+
+   <class name="Role" table="T_Role">
+     <id name="id" column="id">
+       <generator class="sequence"/>
+     </id>
+    <property name="code" type="java.lang.Integer" column="role_code"/>
+    <property name="name" column="role_name"/>
+   </class>
+
+
+
+	<class name="User" table="USERS">
+		<id name="id" type="long">
+			<column name="user_id" />
+			<generator class="sequence" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="user_name" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="user_password" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="user_email" />
+		</property>
+		<property name="active" column="is_active" />
+        <many-to-one name="Role" column="role" unique="false"  lazy="false"/>
+	</class>
+</hibernate-mapping>
