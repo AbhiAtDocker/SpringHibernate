@@ -191,4 +191,19 @@ public class DbService {
 		return tabs;
 	}
 
+    @Transactional
+	public List<Permission> getPermissions() {
+		List<Permission> permissions =null;
+		try {
+			String sql_query = "from Permission";
+	        permissions = sessionFactory.getCurrentSession().createQuery(sql_query).list();		
+			
+			log.info("Total no. of permissioms fetched from the db are?= " + permissions.size());
+		} catch(Exception e) {
+			log.error("An error occurred while fetching the user details from the database", e);	
+		}
+
+		
+		return permissions;
+	}
 }

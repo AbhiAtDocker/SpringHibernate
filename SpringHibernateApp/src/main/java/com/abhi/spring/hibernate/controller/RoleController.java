@@ -81,12 +81,14 @@ public class RoleController {
 	@RequestMapping(value="/role", method=RequestMethod.GET)
 	public String role(Model model){
 		List<Tab> tabs = dbService.getTabs();
-		
+		List<Permission> permissions = dbService.getPermissions();
 		for(Tab tab: tabs){
 		  this.tabs.put(tab.getTabId(), tab);
 		}
 		model.addAttribute("role",new Role());
 		model.addAttribute("tabs", tabs);
+		model.addAttribute("permissions",permissions);
+		
 	 return "role";
 	}
 	

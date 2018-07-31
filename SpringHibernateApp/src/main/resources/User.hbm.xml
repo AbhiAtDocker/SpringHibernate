@@ -41,11 +41,12 @@
      <id name="id" column="id">
        <generator class="sequence"/>
      </id>
+    <property name="name" column="name" type="java.lang.String"/> 
     <property name="view" column="view_p" type="java.lang.Boolean"/>
     <property name="read" column="read_p" type="java.lang.Boolean"/>
     <property name="create" column="create_p" type="java.lang.Boolean"/>
-     <property name="update" column="update_p" type="java.lang.Boolean"/>
-     <property name="delete" column="delete_p" type="java.lang.Boolean"/>
+    <property name="update" column="update_p" type="java.lang.Boolean"/>
+    <property name="delete" column="delete_p" type="java.lang.Boolean"/>
    </class>
 
 

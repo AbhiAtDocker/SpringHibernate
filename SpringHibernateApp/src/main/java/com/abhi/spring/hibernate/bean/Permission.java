@@ -10,9 +10,15 @@ public class Permission implements Serializable{
 	private boolean update;
 	private boolean delete;
     private boolean view;
-   
+    private String name;
     
-   
+       
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public boolean isCreate() {
 		return create;
 	}

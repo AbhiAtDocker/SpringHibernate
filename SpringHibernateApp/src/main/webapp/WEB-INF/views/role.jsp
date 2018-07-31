@@ -36,6 +36,18 @@
             </form:select>
        </td> 
     </tr>
+    
+    
+    <tr>
+        <td><form:label path="permission.id">Select Permissions</form:label></td>
+      <td>   
+            <form:select  path="permission.id" >
+             <form:option value="NONE" label="--- Select ---" />
+              <form:options items="${permissions}" itemLabel="name" itemValue="id"/>
+            </form:select>
+       </td> 
+    </tr>
+    
     <tr>
         <td colspan="2">
             <input type="submit" value="Submit"/>
