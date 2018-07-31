@@ -76,8 +76,8 @@ public class UserCtrl {
 	
 	@RequestMapping(value="/user", method=RequestMethod.GET)
 	public String user(Model model){
-		List<Role> roleList = dbService.getRoles();
-		model.addAttribute("roles",roleList);
+		List<Role> roleList = dbService.getRoles(); 
+		model.addAttribute("roles",roleList); 
 		model.addAttribute("user",new User());
 	 return "user";
 	} 

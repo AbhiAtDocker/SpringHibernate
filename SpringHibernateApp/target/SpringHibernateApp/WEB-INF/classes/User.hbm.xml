@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.abhi.spring.hibernate.bean">
+
+   <class name="Role" table="T_Role">
+     <id name="id" column="id">
+      <generator class="sequence"/>
+     </id>
+     <property name="code" type="java.lang.Integer" column="role_code"/>
+     <property name="name" column="role_name"/>
+     <many-to-one name="permission" column="permission"  lazy="false"/>    
+       <list name="tabs" inverse="false">
+         <key column="id"/>
+         <list-index column = "idx"/>
+         <many-to-many column="Tab_id" class="Tab" lazy="false"/>
+       </list>
+   </class>
+  
+  <!--   
+   <class name="TabRole" table="T_TabRole">
+    <id name="idTabRole" column="id_TabRole">
+       <generator class="sequence"/>
+     </id>
+     
+ 
+     <property name="Tab" column="tab" type="com.abhi.spring.hibernate.bean.Tab"/>
+   </class>
+     -->
+   
+   <class name="Tab" table="T_Tab">
+     <id name="tabId" column="tab_id">
+      <generator class="sequence"></generator>       
+     </id>
+     <property name="name" column="name"/>
+     <property name="comment" column="comment"/>
+   </class>
+   
+   
+   <class name="Permission" table="T_Permission">
+     <id name="id" column="id">
+       <generator class="sequence"/>
+     </id>
+    <property name="view" column="view_p" type="java.lang.Boolean"/>
+    <property name="read" column="read_p" type="java.lang.Boolean"/>
+    <property name="create" column="create_p" type="java.lang.Boolean"/>
+     <property name="update" column="update_p" type="java.lang.Boolean"/>
+     <property name="delete" column="delete_p" type="java.lang.Boolean"/>
+   </class>
+
+
+
+	<class name="User" table="USERS">
+		<id name="id" type="long">
+			<column name="user_id" />
+			<generator class="sequence" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="user_name" />
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="user_password" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="user_email" />
+		</property>
+		<property name="active" column="is_active" type="java.lang.Boolean"/>
+        <many-to-one name="Role" column="role" unique="false"  lazy="false"/>
+	</class>
+</hibernate-mapping>

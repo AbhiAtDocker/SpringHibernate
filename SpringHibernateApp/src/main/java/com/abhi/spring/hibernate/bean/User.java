@@ -10,8 +10,6 @@ public class User implements Serializable {
 	private String name, password, email;
 	private boolean active;
     private Role role;
-    
-       
 
 	public Role getRole() {
 		return role;

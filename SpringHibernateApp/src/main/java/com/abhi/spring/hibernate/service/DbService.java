@@ -3,11 +3,15 @@ package com.abhi.spring.hibernate.service;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.abhi.spring.hibernate.bean.Permission;
 import com.abhi.spring.hibernate.bean.Role;
+import com.abhi.spring.hibernate.bean.Tab;
 import com.abhi.spring.hibernate.bean.User;
+
 
 public class DbService {
 
@@ -79,18 +83,21 @@ public class DbService {
 	@Transactional
 	public List<Role> getRoles()
 	{
-		List<Role> role =null;
+		List<Role> roles =null;
 		try {
 			String sql_query = "from Role";
-	        role = sessionFactory.getCurrentSession().createQuery(sql_query).list();		
+	        roles = sessionFactory.getCurrentSession().createQuery(sql_query).list();	
+	        for(Role role:roles){
+	        	Hibernate.initialize(role.getTabs());
+	        }
 			
-			log.info("Total no. of users fetched from the db are?= " + role.size());
+			log.info("Total no. of users fetched from the db are?= " + roles.size());
 		} catch(Exception e) {
 			log.error("An error occurred while fetching the user details from the database", e);	
 		}
 
 		
-		return role;
+		return roles;
 	}
 	
 	
@@ -138,5 +145,50 @@ public class DbService {
 		}
     	
     }
+    
+    
+    @Transactional 
+	public Long addPermission(Permission permission) {
+		Long r = null;
+		log.info("Adding permission to database");
+		try {
+			 r = (Long) sessionFactory.getCurrentSession().save(permission);
+			log.info("User added: " + permission.getId());
+		} catch(Exception e) {
+			log.error("An error occurred while creating the Permission ", e);	
+		}
+
+		return r;
+	}
+
+    @Transactional
+	public Long addTab(Tab tab) {
+		Long r = null;
+		log.info("Adding Tab to database");
+		try {
+			 r = (Long) sessionFactory.getCurrentSession().save(tab);
+			log.info("Tab added: " + tab.getName());
+		} catch(Exception e) {
+			log.error("An error occurred while creating the Tab ", e);	
+		}
+		
+		return r;
+	}
+
+    @Transactional
+	public List<Tab> getTabs() {
+		List<Tab> tabs =null;
+		try {
+			String sql_query = "from Tab";
+	        tabs = sessionFactory.getCurrentSession().createQuery(sql_query).list();		
+			
+			log.info("Total no. of tabs fetched from the db are?= " + tabs.size());
+		} catch(Exception e) {
+			log.error("An error occurred while fetching the user details from the database", e);	
+		}
+
+		
+		return tabs;
+	}
 
 }

@@ -27,6 +27,15 @@
         <td><form:label path="code">Code</form:label></td>
         <td><form:input path="code" /></td>
     </tr>
+    
+    <tr>
+        <td><form:label path="tabs">Select Tabs</form:label></td>
+      <td>   
+            <form:select multiple="true" path="tabs">
+             <form:options items="${tabs}" itemLabel="name" itemValue="tabId"/>
+            </form:select>
+       </td> 
+    </tr>
     <tr>
         <td colspan="2">
             <input type="submit" value="Submit"/>

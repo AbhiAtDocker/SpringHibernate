@@ -1,6 +1,8 @@
 package com.abhi.spring.hibernate.bean;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 public class Role implements Serializable{
 	/**
@@ -10,10 +12,37 @@ public class Role implements Serializable{
 	private long id;
 	private int code;
 	private String name;
+	private Permission permission;
+	//tab idsS
+	private List<Tab> tabs;
+	
+	
+	
+
+	public List<Tab> getTabs() {
+		return tabs;
+	}
+
+
+	public void setTabs(List<Tab> tabs) {
+		this.tabs = tabs;
+	}
+
 
 	public Role(){
 	}
 	
+	
+	public Permission getPermission() {
+		return permission;
+	}
+
+
+	public void setPermission(Permission permission) {
+		this.permission = permission;
+	}
+
+
 	public long getId() {
 		return id;
 	}
