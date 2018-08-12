@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 @Access(value=AccessType.FIELD)
 public class Address {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="address_id")
 	private long id;
 	@Column
@@ -25,6 +27,8 @@ public class Address {
 	private long country;
 	@Column
 	private long zip;
+	
+	
 	
 	public long getId() {
 		return id;

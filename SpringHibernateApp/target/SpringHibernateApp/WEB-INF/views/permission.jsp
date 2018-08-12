@@ -19,9 +19,17 @@
     <h2>Add Permission </h2>
     <form:form method="POST" action="/SpringHibernateApp/addPermission" modelAttribute="permission">
    <table>
+      <tr>
+        
+        <td><form:label path="name">Name</form:label></td>
+        <td> <form:input path="name" /></td>
+        
+    </tr>
+   <tr>
         <td> <form:checkbox path="view" value="true"/></td> <!-- tab will be vi -->
         <td><form:label path="view">View Tab Permission</form:label></td>
     </tr>
+ 
     <tr>
         
         <td> <form:checkbox path="read" value="true"/></td>

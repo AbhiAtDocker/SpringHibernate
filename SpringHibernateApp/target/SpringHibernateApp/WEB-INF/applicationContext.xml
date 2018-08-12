@@ -10,9 +10,21 @@
    </bean>
    
    <!-- Configuring the Hibernate5 Session Factory Bean -->
-   <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+   <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" > 
+      
+    <!-- bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSe☺ssionFactoryBean"-->
       <property name="dataSource" ref="dataSourceBean" />
-      <property name="mappingResources">
+      <property name="packagesToScan">
+          <list>
+             <value>com.abhi.spring.hibernate.bean</value>
+          </list>
+      </property>
+      <!-- <property name="annotatedClasses">
+        <list>
+           <value>com.abhi.spring.hibernate.bean.Address</value>
+        </list>
+      </property>
+ -->      <property name="mappingResources">
          <value>User.hbm.xml</value>
       </property>
       <property name="hibernateProperties">
@@ -20,8 +32,7 @@
             <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
             <prop key="hibernate.show_sql">true</prop>
             <prop key="hibernate.format_sql">true</prop>
-             <prop key="hibernate.hbm2ddl.auto">create</prop>
-            
+            <prop key="hibernate.hbm2ddl.auto">create</prop>
          </props>
       </property>
    </bean>
