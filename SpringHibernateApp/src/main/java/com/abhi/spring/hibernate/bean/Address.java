@@ -19,51 +19,69 @@ public class Address {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="address_id")
 	private long id;
+    @Column(name="address_key") 
+	private String key;
 	@Column
-	private long address1;
+	private String address1;
 	@Column
-	private long city;
+	private String city;
 	@Column
-	private long country;
+	private String country;
 	@Column
-	private long zip;
+	private String zip;
+	@Column 
+	private Long company_id;
 	
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 	
-	
+	public Long getCompany_id() {
+		return company_id;
+	}
+	public void setCompany_id(Long company_id) {
+		this.company_id = company_id;
+	}
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getAddress1() {
+	
+	
+	public String getAddress1() {
 		return address1;
 	}
-	public void setAddress1(long address1) {
+	public void setAddress1(String address1) {
 		this.address1 = address1;
 	}
-	public long getCity() {
+	public String getCity() {
 		return city;
 	}
-	public void setCity(long city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
-	public long getCountry() {
+	public String getCountry() {
 		return country;
 	}
-	public void setCountry(long country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
-	public long getZip() {
+	public String getZip() {
 		return zip;
 	}
-	public void setZip(long zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", key=" + key + ", address1=" + address1 + ", city=" + city + ", country="
+				+ country + ", zip=" + zip + ", company_id=" + company_id + "]";
+	}
 	
 	
 }

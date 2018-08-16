@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.abhi.spring.hibernate.bean.Company;
 import com.abhi.spring.hibernate.bean.Permission;
 import com.abhi.spring.hibernate.bean.Role;
 import com.abhi.spring.hibernate.bean.Tab;
@@ -43,7 +44,6 @@ public class DbService {
 	}
 	
 	
-
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public long addRole(Role role) {
@@ -206,4 +206,87 @@ public class DbService {
 		
 		return permissions;
 	}
+    
+    
+    
+    
+      /***
+       * Fetches company list
+       * @return
+       */
+     @Transactional    
+	public List<Company> getCompanyList() {
+		List<Company> company_list = null;
+		log.info("Fetching the company list from the database");
+		try {
+			String sql_query = "from Company";
+			company_list = sessionFactory.getCurrentSession().createQuery(sql_query).list();		
+			
+			log.info("Total no. of Companies fetched from the db are?= " + company_list.size());
+		} catch(Exception e) {
+			log.error("An error occurred while fetching the user details from the database", e);	
+		}
+
+		return company_list;
+		
+	}
+    
+    @Transactional
+	public Long addCompany(Company company) {
+		Long r = null;
+		log.info("Adding company to database");
+		try {
+			 r = (Long) sessionFactory.getCurrentSession().save(company);
+			log.info("Company added: " + company.getCompanyName());
+		} catch(Exception e) {
+			log.error("An error occurred while fetching the company details from the database", e);	
+		}
+
+		return r;
+	}
+
+    
+    @Transactional
+	public Company getCompanyById(Long id) {
+		Company company = null;
+		try{
+			String sql_query = "from Company c where c.id = :id ";
+			List companies = sessionFactory.getCurrentSession().createQuery(sql_query).setParameter("id", id).list();
+			company = (Company) companies.get(0);
+			log.info("Company fetched " + company.getCompanyName());
+		}catch(Exception e){
+			log.error("An error occurred while fetching the company details from the database", e);	
+		}
+	
+        return company;
+	}
+
+    
+    @Transactional
+	public void updateCompany(Company company) {
+    	
+    	try{
+    		sessionFactory.getCurrentSession().update(company);
+			log.info("Entities updated: " + company.getCompanyName());
+		}catch(Exception e){
+			log.error("An error occurred while fetching the user details from the database", e);	
+		}
+		
+	}
+    
+    @Transactional
+	public void deleteCompany(Long id) {
+		try{
+    		Company company = sessionFactory.getCurrentSession().load(Company.class, id);
+    		sessionFactory.getCurrentSession().delete(company);
+    		log.info("Entities deleted: " + company + " id " +  id );
+		}catch(Exception e){
+			log.error("An error occurred while fetching the user details from the database", e);	
+		}
+		
+	}
+    
+    
+    
+    
 }
