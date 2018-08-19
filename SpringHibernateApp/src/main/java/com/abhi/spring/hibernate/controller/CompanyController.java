@@ -82,7 +82,7 @@ public class CompanyController {
       /*  List<Role> roleList = dbService.getRoles();
 		model.addAttribute("roles",roleList);*/
         model.addAttribute("company", company);
-        return "companyEdit";  
+        return "company";  
     }  
 	
 	/*This method handles the request to get the user_list from the database.*/
