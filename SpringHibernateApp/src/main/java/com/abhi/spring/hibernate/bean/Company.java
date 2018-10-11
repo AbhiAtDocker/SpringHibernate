@@ -13,9 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity 
@@ -41,6 +47,17 @@ public class Company implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="company_id")
 	private List<Address> contacts;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "parent")
+	private List<Company> tradingPartners;
+	
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="parent_id")
+	private Company parent;
+	
+	
 	@Column
     private String qualifier;
 	

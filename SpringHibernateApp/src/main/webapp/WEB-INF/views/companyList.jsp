@@ -21,13 +21,13 @@
 	        		<table id="usr_table" class="table">
 	                	<thead>
 	                    	<tr align="center">
-	                        	<th scope="col">Id</th><th scope="col">Company Name</th><th scope="col">Company Id</th><th scope="col">Qualifier</th><th scope="col">Edit</th><th scope="col">Delete</th>
+	                        	<th scope="col">Id</th><th scope="col">Company Name</th><th scope="col">Company Id</th><th scope="col">Qualifier</th><th scope="col">Edit</th><th scope="col">Delete</th><th scope="col">Address</th><th scope="col">Trading Partner</th>
 	                    	</tr>
 	                	</thead>
 	                	<tbody>
 	                    	<c:forEach var="u" items="${companyList}">
 	                        	<tr align="center">
-	                            	<td>${u.id}</td><td>${u.companyName}</td><td>${u.companyId}</td><td>${u.qualifier}</td><td><a href="editCompany/${u.id}">Edit</a></td><td><a href="deleteCompany/${u.id}">Delete</a></td>
+	                            	<td>${u.id}</td><td>${u.companyName}</td><td>${u.companyId}</td><td>${u.qualifier}</td><td><a href="editCompany/${u.id}">Edit</a></td><td><a href="deleteCompany/${u.id}">Delete</a></td><td><a href="address/${u.id}">View</a></td><td><a href="tradingPartner/${u.id}">View</a></td>
 	                        	</tr>
 	                    	</c:forEach>
 	                	</tbody>

@@ -31,6 +31,8 @@ public class Address {
 	private String zip;
 	@Column 
 	private Long company_id;
+	@Column
+	private boolean isPrimary;
 	
 	public String getKey() {
 		return key;
