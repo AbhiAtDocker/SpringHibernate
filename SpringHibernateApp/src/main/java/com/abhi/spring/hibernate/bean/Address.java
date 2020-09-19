@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/**
+ *  Address
+ */
 @Entity
 @Table(name="Address")
 @Access(value=AccessType.FIELD)
